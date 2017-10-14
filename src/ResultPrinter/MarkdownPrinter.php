@@ -65,7 +65,7 @@ class MarkdownPrinter implements ResultPrinterInterface
         asort($averagedResults);
         reset($averagedResults);
         $fastestResult = each($averagedResults);
-        printf($template, "Test Name", "Results", "Time", "+ Interval", "Change");
+        printf($template, "Test Name", "Results", "Time(ms)", "+ Interval", "Change");
         printf($template, "---------", "-------", "----", "----------", "------");
         foreach ($averagedResults as $name => $result) {
             $interval = $result - $fastestResult["value"];
@@ -84,8 +84,8 @@ class MarkdownPrinter implements ResultPrinterInterface
                 $template,
                 $name,
                 number_format(count($results[$name])),
-                sprintf("%.10f", $result),
-                "+" . sprintf("%.10f", $interval),
+                sprintf("%.6f", $result),
+                "+" . sprintf("%.6f", $interval),
                 $change
             );
         }

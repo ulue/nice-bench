@@ -43,7 +43,7 @@ class SimplePrinter implements ResultPrinterInterface
     public function printSingleTestResult(TestInterface $test, array $results)
     {
         printf(
-            "For %s out of %s runs, average time was %.10f seconds.\n",
+            "For %s out of %s runs, average time was %.6f millisecond(ms).\n",
             $test->getName(),
             number_format(count($results)),
             array_sum($results) / count($results)
@@ -85,8 +85,8 @@ class SimplePrinter implements ResultPrinterInterface
             printf(
                 $format,
                 $name,
-                sprintf("%.10f", $result),
-                "+" . sprintf("%.10f", $interval),
+                sprintf("%.6f", $result),
+                "+" . sprintf("%.6f", $interval),
                 $change
             );
         }
