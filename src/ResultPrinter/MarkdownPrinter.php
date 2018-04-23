@@ -58,15 +58,16 @@ class MarkdownPrinter implements ResultPrinterInterface
     public function printBenchmarkSummary(Benchmark $benchmark, array $results)
     {
         $averagedResults = array_map(function ($result) {
-                return array_sum($result) / count($result);
-            }, $results);
+            return array_sum($result) / count($result);
+        }, $results);
 
-        $template = "%s | %s | %s | %s | %s\n";
+        $template = "%-55s | %s | %s | %s | %s\n";
         asort($averagedResults);
         reset($averagedResults);
         $fastestResult = each($averagedResults);
-        printf($template, "Test Name", "Results", "Time(ms)", "+ Interval", "Change");
-        printf($template, "---------", "-------", "----", "----------", "------");
+        printf("%s | %s | %s | %s | %s\n", "Test Name", "Results", "Time(ms)", "+ Interval", "Change");
+        printf("%s | %s | %s | %s | %s\n", "------------------", "-------", "-------", "----------", "-----------");
+
         foreach ($averagedResults as $name => $result) {
             $interval = $result - $fastestResult["value"];
             $change   = round((1 - $result / $fastestResult["value"]) * 100, 0);

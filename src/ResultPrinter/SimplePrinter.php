@@ -29,7 +29,7 @@ class SimplePrinter implements ResultPrinterInterface
             "Running \"%s\" consisting of %s tests, %s iterations...\n%s\n\n",
             $benchmark->getName(),
             number_format(count($benchmark->getTests())),
-                number_format($benchmark->getIterations()),
+            number_format($benchmark->getIterations()),
             $benchmark->getResultPruner()->getDescription()
         );
     }
@@ -60,8 +60,8 @@ class SimplePrinter implements ResultPrinterInterface
         $format = "%-35s\t%-20s\t%-20s\t%s\n";
 
         $results = array_map(function ($result) {
-                return array_sum($result) / count($result);
-            }, $results);
+            return array_sum($result) / count($result);
+        }, $results);
 
         asort($results);
         reset($results);

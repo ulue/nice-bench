@@ -1,7 +1,7 @@
 A nice PHP benchmarking framework
 =================================
 
-[![Build Status](https://travis-ci.org/nice-php/nice-bench.png?branch=master)](https://travis-ci.org/nice-php/nice-bench)
+> forked from: https://github.com/nice-php/benchmark
 
 A simple PHP benchmark, useful for the every day micro-optimizer.
 
@@ -14,12 +14,12 @@ use Nice\Benchmark\Benchmark;
 
 $benchmark = new Benchmark(100000, 'String matching');
 $benchmark->register('preg_match', function() {
-        assert(preg_match('/^test/', 'testing'));
-    });
+    assert(preg_match('/^test/', 'testing'));
+});
 
 $benchmark->register('strpos', function() {
-        assert(strpos('testing', 'test') === 0);
-    });
+    assert(strpos('testing', 'test') === 0);
+});
 
 $benchmark->execute();
 ```
@@ -63,16 +63,16 @@ $arr = range(1, 10000);
 
 $benchmark = new Benchmark(10000, 'foreach');
 $benchmark->register('foreach with value', function() use ($arr) {
-        foreach ($arr as $value) {
-        
-        }
-    });
+    foreach ($arr as $value) {
+    
+    }
+});
 
 $benchmark->register('foreach with key, value', function() use ($arr) {
-        foreach ($arr as $key => $value) {
-            
-        }
-    });
+    foreach ($arr as $key => $value) {
+        
+    }
+});
 
 $benchmark->execute();
 ```
@@ -95,3 +95,7 @@ foreach with key, value            	0.0016814657        	+0.0005290744       	46
 ```
 
 For another example, check out [example.php](example/example.php).
+
+## License 
+
+MIT
