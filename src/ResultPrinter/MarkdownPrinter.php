@@ -64,12 +64,17 @@ class MarkdownPrinter implements ResultPrinterInterface
         $template = "%-55s | %s | %s | %s | %s\n";
         asort($averagedResults);
         reset($averagedResults);
-        $fastestResult = each($averagedResults);
+        // $fastestResult = each($averagedResults);
+
+        $fastestResult = ['value' => current($averagedResults)];
+        next($averagedResults);
+
         printf("%s | %s | %s | %s | %s\n", "Test Name", "Results", "Time(ms)", "+ Interval", "Change");
-        printf("%s | %s | %s | %s | %s\n", "------------------", "-------", "-------", "----------", "-----------");
+        printf("%s|%s|%s|%s|%s\n", "-------------------", "--------", "--------", "-----------", "------------");
 
         foreach ($averagedResults as $name => $result) {
             $interval = $result - $fastestResult["value"];
+            // var_dump($result, $fastestResult["value"]);die;
             $change   = round((1 - $result / $fastestResult["value"]) * 100, 0);
             if ($change == 0) {
                 $change = 'baseline';
